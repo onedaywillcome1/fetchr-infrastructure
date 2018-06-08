@@ -24,7 +24,7 @@ vagrant up
 ![Alt text](docs/vagrant2.png?raw=true "Vagrant2")
 
 ## Manual steps
-These steps will provide an Jenkins VM to access appserverVM via ansible.
+These steps will provide an access to appserverVm from Jenkins VM via ansible.
 - Create public & private key in jenkins VM
 After executing (vagrant ssh jenkins) into JenkinsVM, do executing following command(type Enter until it gets done):
 ```
