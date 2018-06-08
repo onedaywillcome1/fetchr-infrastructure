@@ -1,5 +1,5 @@
 ---
-- hosts: jenkins
+- hosts: jenkinsci
   gather_facts: yes
 
   vars_files:
@@ -12,9 +12,36 @@
     - geerlingguy.java
     - geerlingguy.jenkins
     - geerlingguy.docker
-    - geerlingguy.pip
     - geerlingguy.ansible
 
   tasks:
     - name:  Adds jenkins user into docker group
       shell: usermod -a -G docker jenkins
+
+    - name:  Adds jenkins user into docker group
+      shell: usermod -a -G docker vagrant
+
+    - name: install certain python modules for docker
+      pip:
+        name: "{{ item.name }}"
+        version: "{{ item.version }}"
+        state: present
+      with_items:
+      - { name: docker, version: 2.0.0 }
+      - { name: docker-py, version: 1.10.6 }
+
+- hosts: dev
+  gather_facts: yes
+
+  vars_files:
+    - vars/main.yml
+
+  roles:
+    - geerlingguy.firewall
+    - geerlingguy.ntp
+    - geerlingguy.git
+    - geerlingguy.docker
+
+  tasks:
+    - name:  Adds jenkins user into docker group
+      shell: usermod -a -G docker vagrant
