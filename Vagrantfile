@@ -7,7 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     jenkinsci.vm.synced_folder ".", "/vagrant", disabled: true
 
     jenkinsci.vm.hostname = "jenkinsci"
-    jenkinsci.vm.network :private_network, ip: "192.168.1.70"
+    jenkinsci.vm.network :private_network, ip: "192.168.33.70"
 
     jenkinsci.vm.provider :virtualbox do |v|
       v.name = "jenkinsci"
@@ -30,7 +30,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dev.vm.synced_folder ".", "/vagrant", disabled: true
 
     dev.vm.hostname = "dev"
-    dev.vm.network :private_network, ip: "192.168.1.71"
+    dev.vm.network :private_network, ip: "192.168.33.71"
 
     dev.vm.provider :virtualbox do |v|
       v.name = "dev"
